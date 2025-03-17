@@ -9,11 +9,11 @@ function App() {
     
     
   return (
-    <>
-        <h1>Gerenciador de tarefas</h1>
+    <div className="w-screen h-screen bg-slate-400 text-gray-200 flex flex-col items-center p-5">
+        <h1 className="text-3xl text-center font-bold">Gerenciador de tarefas</h1>
         <CreateTask/>
         <Tasks/>
-    </>
+    </div>
   )
 }
 
