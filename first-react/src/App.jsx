@@ -7,23 +7,7 @@ import CreateTask from "./Components/CreateTask.jsx";
 
 function App() {
     
-    const [tasks, setTasks] = useState([
-        {
-            title: "Estudar react",
-            isCompleted: false,
-            id: 0,
-        },
-        {
-            title: "Estudar tailwind",
-            isCompleted: false,
-            id: 1,
-        },
-        {
-            title: "Malhar",
-            isCompleted: false,
-            id: 2,
-        }
-    ])
+    const [tasks, setTasks] = useState([])
     
     function TaskOnClick(taskId)
     {
@@ -107,11 +91,24 @@ function App() {
         setTasks(newTasks);
     }
     
+    function AddTask(taskTitle)
+    {
+        taskTitle = taskTitle.trim();
+
+        if (!taskTitle)
+        {
+            return;
+        }
+        
+        let task = {title: taskTitle, id: tasks.length, isCompleted: false};
+        
+        setTasks([...tasks, task]);
+    }
         
     return (
-    <div className="w-screen h-screen bg-slate-400 text-gray-200 flex flex-col items-center p-5">
+    <div className="w-full min-h-screen bg-slate-400 text-gray-200 flex flex-col items-center p-5">
         <h1 className="text-3xl text-center font-bold">Gerenciador de tarefas</h1>
-        <CreateTask/>
+        <CreateTask AddTask={AddTask} />
         <Tasks tasks={tasks} TaskOnClick={TaskOnClick} MoveTaskUp={MoveTaskUp} MoveTaskDown={MoveTaskDown} ExcludeTask={ExcludeTask}/>
     </div>
   )
