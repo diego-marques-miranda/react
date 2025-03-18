@@ -106,7 +106,7 @@ function App() {
     }
         
     return (
-    <div className="w-full min-h-screen bg-slate-400 text-gray-200 flex flex-col items-center p-5">
+    <div className="w-full min-h-screen bg-teal-500 text-gray-200 flex flex-col items-center p-5">
         <h1 className="text-3xl text-center font-bold">Gerenciador de tarefas</h1>
         <CreateTask AddTask={AddTask} />
         <Tasks tasks={tasks} TaskOnClick={TaskOnClick} MoveTaskUp={MoveTaskUp} MoveTaskDown={MoveTaskDown} ExcludeTask={ExcludeTask}/>
