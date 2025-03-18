@@ -1,17 +1,31 @@
- function Tasks()
+ function Tasks(props)
  {
+     const check = "🗸";
+     const upArrow = "↑";
+     const downArrow = "↓";
+     const exclude = "✕";
+     
      return (
-         <div className="bg-gray-50 w-100 p-5 rounded-md">
+         <div className="bg-slate-300 w-100 p-5 rounded-md">
              <ol>
-                 <li className="flex bg-slate-500 my-2 p-2 rounded-md hover:bg-slate-600 transition-colors duration-300">
-                     <span className="text-lg">Estudar react</span> 
-                     
-                     <div className="flex gap-0.5 ml-auto">
-                         <button className="hover:bg-slate-800 transition-colors duration-300 mx-0.5 bg-slate-700 px-2.5 rounded-md">X</button>
-                         <button className="hover:bg-slate-800 transition-colors duration-300 mx-0.5 bg-slate-700 px-2.5 rounded-md">^</button>
-                         <button className="hover:bg-slate-800 transition-colors duration-300 mx-0.5 bg-slate-700 px-2.5 rounded-md">v</button>
-                     </div>
-                 </li>
+
+                 {
+                     props.tasks.map((task) => 
+                         (
+                             <li className="flex bg-slate-500 my-2 p-2 rounded-md hover:bg-slate-600 transition-colors duration-300" key={task.id}>
+                                 <span className={`${task.isCompleted ? "pl-1" : ""} pt-0.5`}>{task.isCompleted ? "✓" : ""}</span>
+                                 <span onClick={() => props.TaskOnClick(task.id)} className={`text-lg ${task.isCompleted ? "line-through" : ""} cursor-pointer ${task.isCompleted ? "pl-2" : ""}`}>
+                                     {task.title}
+                                 </span>
+                                 
+                                 <div className="flex gap-0.5 ml-auto">
+                                     <button onClick={() => props.MoveTaskUp(task.id)} className="hover:bg-slate-800 transition-colors duration-300 mx-0.5 bg-slate-700 px-2.5 rounded-md">{upArrow}</button>
+                                     <button onClick={() => props.MoveTaskDown(task.id)} className="hover:bg-slate-800 transition-colors duration-300 mx-0.5 bg-slate-700 px-2.5 rounded-md">{downArrow}</button>
+                                     <button onClick={() => props.ExcludeTask(task.id)} className="hover:bg-slate-800 transition-colors duration-300 mx-0.5 bg-slate-700 px-2 rounded-md">{exclude}</button>
+                                 </div>
+                         </li>)
+                    )
+                 }
                  
                  
              </ol>
